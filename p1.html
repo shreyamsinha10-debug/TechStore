@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Responsive E-Commerce</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --color-primary: #6366f1;
+            --color-primary-dark: #4f46e5;
+            --color-text: #0f172a;
+            --color-text-light: #64748b;
+            --color-bg: #0f172a;
+            --color-white: #dbbdbd;
+            --color-border: #e2e8f0;
+            --color-success: #10b981;
+            --color-accent: #ec4899;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+       @keyframes parallaxWiggle {
+  0%   { background-position: 0 0; }
+  50%  { background-position: -200px -50px; }
+  100% { background-position: 0 0; }
+}
+
+.banner {
+  background-image: url("pattern.png");
+  animation: parallaxWiggle 6s ease-in-out infinite;
+}
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(103, 105, 218, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============ HEADER & NAVIGATION ============ */
+        header {
+            background-color: var(--color-white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hamburger Menu - Hidden by default */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ============ BANNER SECTION ============ */
+        .banner {
+            background-image: url("techie2.jpg");
+            background-size: cover;
+            color: var(--color-white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .banner-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .banner-btn {
+            display: inline-block;
+            background-color: var(--color-success);
+            color: var(--color-white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .banner-btn:hover {
+            background-color: #059669;
+        }
+
+        /* ============ PRODUCTS SECTION ============ */
+        .products-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #afb8cb;
+            text-align: center;
+        }
+
+        /* Products Grid - Responsive */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--color-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            /* background-image: url("wirelessheadphone.jpg"); */
+            padding: 10px;
+        }
+        .zoom {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: var(--color-text-light);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background-color: var(--color-text);
+            color: var(--color-white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* ============ RESPONSIVE DESIGN ============ */
+        @media (max-width: 768px) {
+            /* Show hamburger menu */
+            .hamburger {
+                display: flex;
+            }
+
+            /* Hide navigation menu */
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--color-white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Show nav when active class is added */
+            nav.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                display: block;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            /* Banner adjustments */
+            .banner h1 {
+                font-size: 32px;
+            }
+
+            .banner p {
+                font-size: 16px;
+            }
+
+            /* Section title */
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+
+            /* Products grid - 2 columns */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            /* Banner adjustments */
+            .banner {
+                padding: 50px 20px;
+            }
+
+            .banner h1 {
+                font-size: 24px;
+            }
+
+            .banner p {
+                font-size: 14px;
+            }
+
+            /* Section title */
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            /* Products grid - 1 column */
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .product-image {
+                height: 150px;
+            }
+
+            /* Navigation menu on mobile */
+            nav {
+                top: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🛍️ TechStore</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner" id="home">
+        <div class="banner-content">
+            <h1>Welcome to TechStore</h1>
+            <p>Discover the latest technology products at unbeatable prices</p>
+            <a href="#products" class="banner-btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image"><img src="wirelessheadphone.jpg" class="zoom"> </div>
+                <div class="product-info">
+                    <h3 class="product-name">Wireless Headphones</h3>
+                    <p class="product-desc">Premium sound quality with active noise cancellation</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 999</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image"><img src="smartwatch.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Smartwatch Pro</h3>
+                    <p class="product-desc">Track your fitness with advanced health monitoring</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 2499</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image"><img src="usbc.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">USB-C Cable</h3>
+                    <p class="product-desc">Fast charging and data transfer cable</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 299</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image"><img src="portablespeaker.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Portable Speaker</h3>
+                    <p class="product-desc">Waterproof speaker with 12-hour battery life</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 1999</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image"><img src="pstand.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Phone Stand</h3>
+                    <p class="product-desc">Adjustable stand for all devices</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 649</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image"><img src="screenp.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Screen Protector</h3>
+                    <p class="product-desc">Tempered glass for ultimate protection</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 149</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 TechStore. All rights reserved.</p>
+        <p>Responsive Design | Mobile Friendly | E-Commerce</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('nav');
+            const hamburger = document.querySelector('.hamburger');
+            if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            background-color: #10355a;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(110, 69, 69, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: rgb(230, 83, 83);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: #3498db;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        /* Content Area */
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Semantic Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Gand</a></li>
+            <li><a href="#about">Gala</a></li>
+            <li><a href="#services">Thopda</a></li>
+            <li><a href="#contact">Number</a></li>
+        </ul>
+    </nav>
+<main>
+        <h1>Bissu On Sale</h1>
+        <p>Sales offer going on for Bissu.</p>
+    </main>
+</body>
+</html>

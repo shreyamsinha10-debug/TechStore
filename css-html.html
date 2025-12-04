@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML & CSS Notes (W3Schools Style)</title>
+
+  <!-- Basic CSS reset and fonts -->
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0 1rem 3rem;
+      line-height: 1.5;
+      background: #f4f4f4;
+    }
+    header {
+      background: #04AA6D;
+      color: white;
+      padding: 1rem;
+      margin: 0 -1rem 1rem;
+    }
+    h1, h2, h3 {
+      margin-top: 1.5rem;
+    }
+    section {
+      background: white;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 4px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 0.75rem;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+    .example-box {
+      border-left: 4px solid #04AA6D;
+      padding-left: 0.75rem;
+      margin: 0.5rem 0;
+    }
+    .inline-demo span {
+      border: 1px solid #999;
+      padding: 2px 4px;
+      margin-right: 4px;
+    }
+    .block-demo div {
+      border: 1px solid #999;
+      margin: 4px 0;
+      padding: 4px;
+    }
+    .inline-block-demo div {
+      display: inline-block;
+      border: 1px solid #999;
+      margin: 4px;
+      padding: 4px;
+      width: 80px;
+      text-align: center;
+    }
+    .nav {
+      margin: 0.5rem 0 1rem;
+      font-size: 0.95rem;
+    }
+    .nav a {
+      margin-right: 0.5rem;
+      color: #04AA6D;
+      text-decoration: none;
+    }
+    .nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>HTML &amp; CSS Step‑by‑Step Notes</h1>
+  <p>Topics aligned with W3Schools HTML and CSS tutorials up to CSS <code>display</code>.</p>
+</header>
+
+<nav class="nav">
+  <strong>Jump to:</strong>
+  <a href="#html-basic">HTML Basics</a>
+  <a href="#html-elements">Elements</a>
+  <a href="#html-attributes">Attributes</a>
+  <a href="#html-headings">Headings</a>
+  <a href="#html-paragraphs">Paragraphs</a>
+  <a href="#html-styles">Inline Styles</a>
+  <a href="#html-formatting">Formatting</a>
+  <a href="#html-comments">Comments</a>
+  <a href="#html-colors">Colors</a>
+  <a href="#html-links">Links</a>
+  <a href="#html-images">Images</a>
+  <a href="#html-tables">Tables</a>
+  <a href="#html-lists">Lists</a>
+  <a href="#html-block-inline">Block vs Inline</a>
+  <a href="#html-class-id">Class &amp; Id</a>
+  <a href="#html-iframes">Iframes</a>
+  <a href="#html-head">Head</a>
+  <a href="#html-forms">Forms</a>
+  <a href="#css-intro">CSS Intro</a>
+  <a href="#css-selectors">Selectors</a>
+  <a href="#css-colors">CSS Colors</a>
+  <a href="#css-backgrounds">Backgrounds</a>
+  <a href="#css-borders">Borders</a>
+  <a href="#css-margins">Margins</a>
+  <a href="#css-padding">Padding</a>
+  <a href="#css-height-width">Height/Width</a>
+  <a href="#css-box-model">Box Model</a>
+  <a href="#css-display">CSS Display</a>
+</nav>
+
+<!-- ================= HTML SECTION ================= -->
+
+<section id="html-basic">
+  <h2>HTML Basics</h2>
+  <p>HTML is a markup language used to structure content on web pages using tags like <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code>.</p>
+  <div class="example-box">
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-elements">
+  <h2>HTML Elements</h2>
+  <p>An element is everything from the start tag to the end tag, for example <code>&lt;p&gt;...&lt;/p&gt;</code>.</p>
+  <div class="example-box">
+    <pre>
+&lt;p&gt;This is a paragraph element.&lt;/p&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-attributes">
+  <h2>HTML Attributes</h2>
+  <p>Attributes provide extra information in the start tag, such as <code>href</code>, <code>src</code>, <code>alt</code>, <code>id</code>, and <code>class</code>.</p>
+  <div class="example-box">
+    <pre>
+&lt;a href="https://www.example.com"&gt;Visit Example&lt;/a&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-headings">
+  <h2>HTML Headings</h2>
+  <p>Headings go from <code>&lt;h1&gt;</code> (most important) to <code>&lt;h6&gt;</code> (least important).</p>
+  <div class="example-box">
+    <pre>
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-paragraphs">
+  <h2>HTML Paragraphs</h2>
+  <p>Paragraphs are defined with the <code>&lt;p&gt;</code> tag and are block‑level elements.</p>
+  <div class="example-box">
+    <pre>
+&lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-styles">
+  <h2>HTML Inline Styles</h2>
+  <p>The <code>style</code> attribute can apply CSS directly to an element, for quick demonstrations.</p>
+  <div class="example-box">
+    <pre>
+&lt;p style="color: blue; font-size: 20px;"&gt;Styled text&lt;/p&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-formatting">
+  <h2>HTML Text Formatting</h2>
+  <p>Common tags include <code>&lt;b&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;mark&gt;</code>, and others.</p>
+  <div class="example-box">
+    <pre>
+&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; and &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-comments">
+  <h2>HTML Comments</h2>
+  <p>Comments are ignored by the browser and start with <code>&lt;!--</code> and end with <code>--&gt;</code>.</p>
+  <div class="example-box">
+    <pre>
+&lt;!-- This is a comment --&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-colors">
+  <h2>HTML Colors</h2>
+  <p>Colors can be set with names, hex codes, RGB, or HSL in CSS.</p>
+  <div class="example-box">
+    <pre>
+&lt;p style="color: red;"&gt;Named color&lt;/p&gt;
+&lt;p style="color: #00ff00;"&gt;Hex color&lt;/p&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-links">
+  <h2>HTML Links</h2>
+  <p>Links are created with the <code>&lt;a&gt;</code> tag and the <code>href</code> attribute.</p>
+  <div class="example-box">
+    <pre>
+&lt;a href="https://www.w3schools.com"&gt;Go to W3Schools&lt;/a&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-images">
+  <h2>HTML Images</h2>
+  <p>Images use the <code>&lt;img&gt;</code> tag with <code>src</code> and <code>alt</code> attributes and do not need a closing tag.</p>
+  <div class="example-box">
+    <pre>
+&lt;img src="logo.png" alt="Site logo" width="100" height="100"&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-tables">
+  <h2>HTML Tables</h2>
+  <p>Tables use <code>&lt;table&gt;</code>, rows with <code>&lt;tr&gt;</code>, header cells with <code>&lt;th&gt;</code>, and data cells with <code>&lt;td&gt;</code>. [web:11]</p>
+  <div class="example-box">
+    <pre>
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;City&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alex&lt;/td&gt;
+    &lt;td&gt;Bangalore&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-lists">
+  <h2>HTML Lists</h2>
+  <p>Unordered lists use <code>&lt;ul&gt;</code> and ordered lists use <code>&lt;ol&gt;</code>, both containing <code>&lt;li&gt;</code> items.</p>
+  <div class="example-box">
+    <pre>
+&lt;ul&gt;
+  &lt;li&gt;Tea&lt;/li&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+&lt;/ul&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-block-inline">
+  <h2>Block vs Inline</h2>
+  <p>Block elements (like <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>) start on a new line and take full width, while inline elements (like <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>) stay in the flow of text. [web:10]</p>
+  <div class="example-box">
+    <div class="block-demo">
+      <div>Block 1</div>
+      <div>Block 2</div>
+    </div>
+    <div class="inline-demo">
+      <span>Inline A</span>
+      <span>Inline B</span>
+    </div>
+  </div>
+</section>
+
+<section id="html-class-id">
+  <h2>Class and Id</h2>
+  <p><code>class</code> can be reused on multiple elements, while <code>id</code> is meant to be unique in a page.</p>
+  <div class="example-box">
+    <pre>
+&lt;p class="note"&gt;Reusable style&lt;/p&gt;
+&lt;p id="main-title"&gt;Unique element&lt;/p&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-iframes">
+  <h2>HTML Iframes</h2>
+  <p>Iframes embed another page inside the current page using the <code>&lt;iframe&gt;</code> tag.</p>
+  <div class="example-box">
+    <pre>
+&lt;iframe src="https://www.example.com" width="300" height="200"&gt;&lt;/iframe&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-head">
+  <h2>HTML Head</h2>
+  <p>The <code>&lt;head&gt;</code> section contains metadata, title, links to CSS, scripts, and other resources. [web:10]</p>
+  <div class="example-box">
+    <pre>
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+    </pre>
+  </div>
+</section>
+
+<section id="html-forms">
+  <h2>HTML Forms</h2>
+  <p>Forms collect user input using the <code>&lt;form&gt;</code> tag and controls like <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, and <code>&lt;select&gt;</code>. [web:10]</p>
+  <div class="example-box">
+    <pre>
+&lt;form action="/submit" method="post"&gt;
+  &lt;label&gt;Name:
+    &lt;input type="text" name="username"&gt;
+  &lt;/label&gt;
+  &lt;input type="submit" value="Send"&gt;
+&lt;/form&gt;
+    </pre>
+  </div>
+</section>
+
+<!-- ================= CSS SECTION ================= -->
+
+<section id="css-intro">
+  <h2>CSS Introduction</h2>
+  <p>CSS controls the presentation of HTML elements and can be added inline, in the <code>&lt;head&gt;</code>, or in external stylesheets. [web:24]</p>
+  <div class="example-box">
+    <pre>
+/* External or internal CSS */
+p {
+  color: darkblue;
+}
+    </pre>
+  </div>
+</section>
+
+<section id="css-selectors">
+  <h2>CSS Selectors</h2>
+  <p>Selectors choose elements to style: type selectors (<code>p</code>), class selectors (<code>.note</code>), id selectors (<code>#main</code>), and universal selector (<code>*</code>). [web:24][web:17]</p>
+  <div class="example-box">
+    <pre>
+p { color: green; }
+.note { background: #ffffcc; }
+#main { border: 1px solid #000; }
+* { margin: 0; padding: 0; }
+    </pre>
+  </div>
+</section>
+
+<section id="css-colors">
+  <h2>CSS Colors</h2>
+  <p>CSS sets colors for text, backgrounds, borders, and more using names, hex, RGB, or HSL. [web:24]</p>
+  <div class="example-box">
+    <pre>
+h1 { color: #ff6600; }
+div { background-color: rgb(240, 240, 240); }
+    </pre>
+  </div>
+</section>
+
+<section id="css-backgrounds">
+  <h2>CSS Backgrounds</h2>
+  <p>Background properties include <code>background-color</code>, <code>background-image</code>, <code>background-repeat</code>, and <code>background-size</code>. [web:24]</p>
+  <div class="example-box">
+    <pre>
+body {
+  background-color: #fafafa;
+}
+.hero {
+  background-image: url("banner.jpg");
+  background-size: cover;
+}
+    </pre>
+  </div>
+</section>
+
+<section id="css-borders">
+  <h2>CSS Borders</h2>
+  <p>Borders are controlled with <code>border-width</code>, <code>border-style</code>, and <code>border-color</code> or the shorthand
+    <code>border</code>. [web:24]</p>
+    <div class="example-box">
+    <pre>
+.box {  
+  border: 2px solid #333;
+  border-radius: 5px;
+}
+    </pre>
+  </div>        
+</section>
+<section id="css-margins">
+  <h2>CSS Margins</h2>
+  <p>Margins create space outside elements using <code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, and <code>margin-left</code>, or the shorthand <code>margin</code>. [web:24]</p>
+  <div class="example-box">
+    <pre>
+.container {
+  margin: 20px; /* all sides */
+  margin: 10px 15px; /* vertical | horizontal */                
+    margin: 5px 10px 15px 20px; /* top | right | bottom | left */   
+}
+    </pre>  
+    </div>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PetPals Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: flex-end; /* push content to right */
+      align-items: center;
+      padding: 2rem;
+      color: #f9fafb;
+      background:
+        url("https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg")
+          center left / cover no-repeat,
+        url("https://images.pexels.com/photos/573186/pexels-photo-573186.jpeg")
+          20% 80% / 260px 260px no-repeat,
+        url("https://images.pexels.com/photos/1440387/pexels-photo-1440387.jpeg")
+          40% 15% / 260px 260px no-repeat,
+        radial-gradient(circle at top right, #ffafbd, #ffc3a0 40%, #1f2933 100%);
+      /* first is main bg, next two are extra pets, last is gradient overlay */
+      background-attachment: fixed;
+    }
+
+    /* dark overlay to make text readable */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at left, rgba(0, 0, 0, 0.2), transparent 60%),
+                  linear-gradient(120deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.4));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .layout {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .pet-copy {
+      flex: 1;
+      max-width: 420px;
+      color: #e5e7eb;
+    }
+
+    .pet-copy h1 {
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .pet-copy p {
+      font-size: 0.98rem;
+      max-width: 320px;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    .pet-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .pet-tag {
+      font-size: 0.78rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.3);
+      backdrop-filter: blur(6px);
+      background: rgba(15, 23, 42, 0.45);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      padding: 2rem 2.2rem;
+      border-radius: 20px;
+      background: radial-gradient(circle at top left,
+                  rgba(255, 255, 255, 0.35),
+                  rgba(148, 163, 184, 0.08));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(248, 250, 252, 0.45);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.7),
+        0 0 0 1px rgba(148, 163, 184, 0.4);
+      color: #0f172a;
+    }
+
+    .login-header {
+      margin-bottom: 1.2rem;
+    }
+
+    .login-header span.badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #e5e7eb;
+    }
+
+    .login-header h2 {
+      margin-top: 0.7rem;
+      font-size: 1.5rem;
+      color: #020617;
+    }
+
+    .login-header p {
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .form-group {
+      margin-bottom: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      margin-bottom: 0.25rem;
+      color: #111827;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 0.7rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.9rem;
+      background: rgba(248, 250, 252, 0.85);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .input-wrap input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+      background: #ffffff;
+    }
+
+    .error {
+      font-size: 0.75rem;
+      color: #b91c1c;
+      margin-top: 0.2rem;
+      min-height: 0.8rem;
+    }
+
+    .row-inline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.1rem;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .row-inline a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+
+    .row-inline a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.68rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      color: #f9fafb;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      box-shadow: 0 12px 25px rgba(248, 113, 113, 0.45);
+      transition: transform 0.1s, box-shadow 0.15s, filter 0.15s;
+    }
+
+    .btn-login:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 16px 30px rgba(248, 113, 113, 0.6);
+    }
+
+    .btn-login:active {
+      transform: scale(0.97);
+      box-shadow: 0 8px 18px rgba(248, 113, 113, 0.4);
+    }
+
+    .message {
+      margin-top: 0.7rem;
+      font-size: 0.82rem;
+      text-align: center;
+      min-height: 1.1rem;
+    }
+
+    .message.success {
+      color: #15803d;
+    }
+
+    .message.error {
+      color: #b91c1c;
+    }
+
+    .social-login {
+      margin-top: 1.1rem;
+      display: flex;
+      gap: 0.4rem;
+      justify-content: center;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.9);
+      color: #6b7280;
+      background: rgba(248, 250, 252, 0.7);
+    }
+
+    .footer-note {
+      margin-top: 0.9rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.8rem;
+      }
+      .pet-copy {
+        text-align: center;
+        max-width: 480px;
+      }
+      .pet-copy p {
+        margin: 0 auto;
+      }
+      .pet-tags {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 1.1rem;
+      }
+      .login-card {
+        padding: 1.6rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- Left side pets copy -->
+    <section class="pet-copy">
+      <h1>Welcome to Tail Guide</h1>
+      <p>Sign in to manage your vet visits, grooming sessions, and daily care
+         for all your furry, feathery, and finned family members.</p>
+      <div class="pet-tags">
+        <span class="pet-tag">Dogs</span>
+        <span class="pet-tag">Cats</span>
+        <span class="pet-tag">Birds</span>
+        <span class="pet-tag">Fish</span>
+        <span class="pet-tag">Rabbits</span>
+        <span class="pet-tag">Reptiles</span>
+      </div>
+    </section>
+
+    <!-- Right side glass login card -->
+    <section class="login-card">
+      <div class="login-header">
+        <h2>Login to your pack</h2>
+        <p>Use your email and password to continue.</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-wrap">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+          </div>
+          <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter password"
+              autocomplete="current-password"
+            />
+          </div>
+          <div class="error" id="passwordError"></div>
+        </div>
+
+        <div class="row-inline">
+          <label>
+            <input type="checkbox" id="remember" />
+            Remember my pets
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-login">Login</button>
+        <div id="formMessage" class="message"></div>
+
+        <div class="social-login">
+          <span class="pill">Continue with Google</span>
+          <span class="pill">Continue with Apple</span>
+        </div>
+
+        <p class="footer-note">
+          New here? <strong>Create a free Tail Guide account</strong>
+        </p>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    // Basic validation with a demo check
+    const form = document.getElementById("loginForm");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const formMessage = document.getElementById("formMessage");
+
+    const DEMO_EMAIL = "petparent@example.com";
+    const DEMO_PASS = "petlover123";
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      emailError.textContent = "";
+      passwordError.textContent = "";
+      formMessage.textContent = "";
+      formMessage.className = "message";
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+      let valid = true;
+
+      if (!email) {
+        emailError.textContent = "Email is required";
+        valid = false;
+      } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        emailError.textContent = "Enter a valid email address";
+        valid = false;
+      }
+
+      if (!password) {
+        passwordError.textContent = "Password is required";
+        valid = false;
+      } else if (password.length < 6) {
+        passwordError.textContent = "At least 6 characters";
+        valid = false;
+      }
+
+      if (!valid) {
+        formMessage.textContent = "Please fix the highlighted fields.";
+        formMessage.classList.add("error");
+        return;
+      }
+
+      if (email === DEMO_EMAIL && password === DEMO_PASS) {
+        formMessage.textContent = "Login successful! (demo only)";
+        formMessage.classList.add("success");
+        setTimeout(() => {
+          alert("You are logged in (demo). Redirect to dashboard here.");
+        }, 700);
+      } else {
+        formMessage.textContent = "Invalid email or password.";
+        formMessage.classList.add("error");
+      }
+    });
+  </script>
+</body>
+</html>
