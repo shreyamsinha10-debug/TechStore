@@ -1,258 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Login Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Responsive E-Commerce</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #4c6fff, #8e2de2);
-    }
+        :root {
+            --color-primary: #6366f1;
+            --color-primary-dark: #4f46e5;
+            --color-text: #0f172a;
+            --color-text-light: #64748b;
+            --color-bg: #0f172a;
+            --color-white: #dbbdbd;
+            --color-border: #e2e8f0;
+            --color-success: #10b981;
+            --color-accent: #ec4899;
+        }
 
-    .login-container {
-      background: #ffffff;
-      width: 100%;
-      max-width: 380px;
-      padding: 2rem 2.5rem;
-      border-radius: 12px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
-    }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .login-header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+       @keyframes parallaxWiggle {
+  0%   { background-position: 0 0; }
+  50%  { background-position: -200px -50px; }
+  100% { background-position: 0 0; }
+}
 
-    .login-header h2 {
-      font-size: 1.6rem;
-      margin-bottom: 0.4rem;
-      color: #111827;
-    }
+.banner {
+  background-image: url("pattern.png");
+  animation: parallaxWiggle 6s ease-in-out infinite;
+}
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
 
-    .login-header p {
-      font-size: 0.9rem;
-      color: #6b7280;
-    }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
 
-    .form-group {
-      margin-bottom: 1rem;
-    }
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(103, 105, 218, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+            }
+        }
 
-    label {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-      color: #374151;
-    }
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
 
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 0.65rem 0.8rem;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font-size: 0.95rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    input[type="text"]:focus,
-    input[type="password"]:focus {
-      outline: none;
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .error {
-      font-size: 0.8rem;
-      color: #b91c1c;
-      margin-top: 0.25rem;
-      min-height: 1em;
-    }
+        /* ============ HEADER & NAVIGATION ============ */
+        header {
+            background-color: var(--color-white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .remember-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.2rem;
-      font-size: 0.85rem;
-      color: #4b5563;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
 
-    .btn-login {
-      width: 100%;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 999px;
-      background: #4f46e5;
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
 
-    .btn-login:hover {
-      background: #4338ca;
-    }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
 
-    .btn-login:active {
-      transform: scale(0.98);
-    }
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-    .message {
-      margin-top: 0.8rem;
-      text-align: center;
-      font-size: 0.9rem;
-      min-height: 1.2em;
-    }
+        nav a:hover {
+            color: var(--color-primary);
+        }
 
-    .message.success {
-      color: #15803d;
-    }
+        /* Hamburger Menu - Hidden by default */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
 
-    .message.error {
-      color: #b91c1c;
-    }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
 
-    .footer-text {
-      margin-top: 1.2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
+        /* ============ BANNER SECTION ============ */
+        .banner {
+            background-image: url("techie2.jpg");
+            background-size: cover;
+            color: var(--color-white);
+            padding: 80px 20px;
+            text-align: center;
+        }
 
-    @media (max-width: 480px) {
-      .login-container {
-        margin: 0 1rem;
-        padding: 1.5rem 1.4rem;
-      }
-    }
-  </style>
+        .banner-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .banner-btn {
+            display: inline-block;
+            background-color: var(--color-success);
+            color: var(--color-white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .banner-btn:hover {
+            background-color: #059669;
+        }
+
+        /* ============ PRODUCTS SECTION ============ */
+        .products-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #afb8cb;
+            text-align: center;
+        }
+
+        /* Products Grid - Responsive */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--color-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            /* background-image: url("wirelessheadphone.jpg"); */
+            padding: 10px;
+        }
+        .zoom {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: var(--color-text-light);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background-color: var(--color-text);
+            color: var(--color-white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* ============ RESPONSIVE DESIGN ============ */
+        @media (max-width: 768px) {
+            /* Show hamburger menu */
+            .hamburger {
+                display: flex;
+            }
+
+            /* Hide navigation menu */
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--color-white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Show nav when active class is added */
+            nav.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                display: block;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            /* Banner adjustments */
+            .banner h1 {
+                font-size: 32px;
+            }
+
+            .banner p {
+                font-size: 16px;
+            }
+
+            /* Section title */
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+
+            /* Products grid - 2 columns */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            /* Banner adjustments */
+            .banner {
+                padding: 50px 20px;
+            }
+
+            .banner h1 {
+                font-size: 24px;
+            }
+
+            .banner p {
+                font-size: 14px;
+            }
+
+            /* Section title */
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            /* Products grid - 1 column */
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .product-image {
+                height: 150px;
+            }
+
+            /* Navigation menu on mobile */
+            nav {
+                top: 60px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-header">
-      <h2>Welcome back</h2>
-      <p>Please sign in to continue</p>
-    </div>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🛍️ TechStore</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
 
-    <form id="loginForm" novalidate>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Enter your username"
-          autocomplete="username"
-        />
-        <div class="error" id="usernameError"></div>
-      </div>
+    <!-- Banner Section -->
+    <section class="banner" id="home">
+        <div class="banner-content">
+            <h1>Welcome to TechStore</h1>
+            <p>Discover the latest technology products at unbeatable prices</p>
+            <a href="#products" class="banner-btn">Shop Now</a>
+        </div>
+    </section>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          autocomplete="current-password"
-        />
-        <div class="error" id="passwordError"></div>
-      </div>
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image"><img src="wirelessheadphone.jpg" class="zoom"> </div>
+                <div class="product-info">
+                    <h3 class="product-name">Wireless Headphones</h3>
+                    <p class="product-desc">Premium sound quality with active noise cancellation</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 999</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
-      <div class="remember-row">
-        <label>
-          <input type="checkbox" id="rememberMe" />
-          Remember me
-        </label>
-        <a href="#" style="color:#4f46e5; text-decoration:none;">Forgot password?</a>
-      </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image"><img src="smartwatch.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Smartwatch Pro</h3>
+                    <p class="product-desc">Track your fitness with advanced health monitoring</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 2499</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
-      <button type="submit" class="btn-login">Login</button>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image"><img src="usbc.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">USB-C Cable</h3>
+                    <p class="product-desc">Fast charging and data transfer cable</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 299</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
-      <div id="formMessage" class="message"></div>
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image"><img src="portablespeaker.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Portable Speaker</h3>
+                    <p class="product-desc">Waterproof speaker with 12-hour battery life</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 1999</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
-      <div class="footer-text">
-        Demo credentials: <strong>admin / admin123</strong> (front-end check only)
-      </div>
-    </form>
-  </div>
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image"><img src="pstand.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Phone Stand</h3>
+                    <p class="product-desc">Adjustable stand for all devices</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 649</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
 
-  <script>
-    // Very basic front‑end validation and dummy credential check.[web:6][web:9][web:12]
-    const form = document.getElementById("loginForm");
-    const usernameInput = document.getElementById("username");
-    const passwordInput = document.getElementById("password");
-    const usernameError = document.getElementById("usernameError");
-    const passwordError = document.getElementById("passwordError");
-    const formMessage = document.getElementById("formMessage");
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image"><img src="screenp.jpg" class="zoom"></div>
+                <div class="product-info">
+                    <h3 class="product-name">Screen Protector</h3>
+                    <p class="product-desc">Tempered glass for ultimate protection</p>
+                    <div class="product-footer">
+                        <span class="product-price">Rs. 149</span>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Demo valid credentials (front-end only; do NOT use this in production)
-    const DEMO_USER = "admin";
-    const DEMO_PASS = "admin123";
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 TechStore. All rights reserved.</p>
+        <p>Responsive Design | Mobile Friendly | E-Commerce</p>
+    </footer>
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault(); // prevent page refresh
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
 
-      // Clear previous errors
-      usernameError.textContent = "";
-      passwordError.textContent = "";
-      formMessage.textContent = "";
-      formMessage.className = "message";
+        // Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+            });
+        });
 
-      const username = usernameInput.value.trim();
-      const password = passwordInput.value.trim();
-
-      let valid = true;
-
-      if (!username) {
-        usernameError.textContent = "Username is required";
-        valid = false;
-      }
-
-      if (!password) {
-        passwordError.textContent = "Password is required";
-        valid = false;
-      } else if (password.length < 6) {
-        passwordError.textContent = "Password must be at least 6 characters";
-        valid = false;
-      }
-
-      if (!valid) {
-        formMessage.textContent = "Please fix the errors above.";
-        formMessage.classList.add("error");
-        return;
-      }
-
-      // Simple demo authentication
-      if (username === DEMO_USER && password === DEMO_PASS) {
-        formMessage.textContent = "Login successful! (demo only)";
-        formMessage.classList.add("success");
-
-        // Example redirect after short delay
-        setTimeout(() => {
-          // window.location.href = "dashboard.html";
-          alert("You would be redirected to dashboard.html now (demo).");
-        }, 800);
-      } else {
-        formMessage.textContent = "Invalid username or password.";
-        formMessage.classList.add("error");
-      }
-    });
-  </script>
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const nav = document.querySelector('nav');
+            const hamburger = document.querySelector('.hamburger');
+            if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>

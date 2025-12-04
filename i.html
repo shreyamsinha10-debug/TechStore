@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4c6fff, #8e2de2);
+    }
+
+    .login-container {
+      background: #ffffff;
+      width: 100%;
+      max-width: 380px;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .login-header h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      color: #111827;
+    }
+
+    .login-header p {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      color: #374151;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.65rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+    }
+
+    .error {
+      font-size: 0.8rem;
+      color: #b91c1c;
+      margin-top: 0.25rem;
+      min-height: 1em;
+    }
+
+    .remember-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 999px;
+      background: #4f46e5;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-login:hover {
+      background: #4338ca;
+    }
+
+    .btn-login:active {
+      transform: scale(0.98);
+    }
+
+    .message {
+      margin-top: 0.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      min-height: 1.2em;
+    }
+
+    .message.success {
+      color: #15803d;
+    }
+
+    .message.error {
+      color: #b91c1c;
+    }
+
+    .footer-text {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        margin: 0 1rem;
+        padding: 1.5rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-header">
+      <h2>Welcome back</h2>
+      <p>Please sign in to continue</p>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Enter your username"
+          autocomplete="username"
+        />
+        <div class="error" id="usernameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+        />
+        <div class="error" id="passwordError"></div>
+      </div>
+
+      <div class="remember-row">
+        <label>
+          <input type="checkbox" id="rememberMe" />
+          Remember me
+        </label>
+        <a href="#" style="color:#4f46e5; text-decoration:none;">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+
+      <div id="formMessage" class="message"></div>
+
+      <div class="footer-text">
+        Demo credentials: <strong>admin / admin123</strong> (front-end check only)
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Very basic front‑end validation and dummy credential check.[web:6][web:9][web:12]
+    const form = document.getElementById("loginForm");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const usernameError = document.getElementById("usernameError");
+    const passwordError = document.getElementById("passwordError");
+    const formMessage = document.getElementById("formMessage");
+
+    // Demo valid credentials (front-end only; do NOT use this in production)
+    const DEMO_USER = "admin";
+    const DEMO_PASS = "admin123";
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // prevent page refresh
+
+      // Clear previous errors
+      usernameError.textContent = "";
+      passwordError.textContent = "";
+      formMessage.textContent = "";
+      formMessage.className = "message";
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      let valid = true;
+
+      if (!username) {
+        usernameError.textContent = "Username is required";
+        valid = false;
+      }
+
+      if (!password) {
+        passwordError.textContent = "Password is required";
+        valid = false;
+      } else if (password.length < 6) {
+        passwordError.textContent = "Password must be at least 6 characters";
+        valid = false;
+      }
+
+      if (!valid) {
+        formMessage.textContent = "Please fix the errors above.";
+        formMessage.classList.add("error");
+        return;
+      }
+
+      // Simple demo authentication
+      if (username === DEMO_USER && password === DEMO_PASS) {
+        formMessage.textContent = "Login successful! (demo only)";
+        formMessage.classList.add("success");
+
+        // Example redirect after short delay
+        setTimeout(() => {
+          // window.location.href = "dashboard.html";
+          alert("You would be redirected to dashboard.html now (demo).");
+        }, 800);
+      } else {
+        formMessage.textContent = "Invalid username or password.";
+        formMessage.classList.add("error");
+      }
+    });
+  </script>
+</body>
+</html>
