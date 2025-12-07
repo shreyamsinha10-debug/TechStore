@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +25,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -35,26 +37,38 @@
                 opacity: 0;
                 transform: translateX(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-       @keyframes parallaxWiggle {
-  0%   { background-position: 0 0; }
-  50%  { background-position: -200px -50px; }
-  100% { background-position: 0 0; }
-}
 
-.banner {
-  background-image: url("pattern.png");
-  animation: parallaxWiggle 6s ease-in-out infinite;
-}
+        @keyframes parallaxWiggle {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: -200px -50px;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .banner {
+            background-image: url("pattern.png");
+            animation: parallaxWiggle 6s ease-in-out infinite;
+        }
+
         @keyframes slideInRight {
             from {
                 opacity: 0;
                 transform: translateX(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0px);
@@ -62,18 +76,24 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-20px);
             }
         }
 
         @keyframes glow {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 20px rgba(103, 105, 218, 0.3);
             }
+
             50% {
                 box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
             }
@@ -83,6 +103,7 @@
             0% {
                 background-position: -1000px 0;
             }
+
             100% {
                 background-position: 1000px 0;
             }
@@ -108,27 +129,38 @@
             background: linear-gradient(135deg, #1a1a1a, #2b2b2b, #1a1a1a);
             background-size: 300% 300%;
             animation: metalMove 6s ease infinite;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
             position: sticky;
             top: 0;
             z-index: 100;
         }
+
         /* Metallic shine animation */
-@keyframes metalMove {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-header::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #aaa, #fff, #aaa);
-    opacity: 0.4;
-}
+        @keyframes metalMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #aaa, #fff, #aaa);
+            opacity: 0.4;
+        }
+
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -138,46 +170,47 @@ header::after {
             align-items: center;
             height: 70px;
         }
+
         /* ============ DROPDOWN MENU ============ */
 
-nav ul li {
-    position: relative;
-}
+        nav ul li {
+            position: relative;
+        }
 
-/* Hidden dropdown by default */
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 35px;
-    left: 0;
-    background: var(--color-white);
-    padding: 10px 0;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    list-style: none;
-    min-width: 150px;
-    z-index: 50;
-}
+        /* Hidden dropdown by default */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 22px;
+            left: 0;
+            background: var(--color-white);
+            padding: 10px 0;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            list-style: none;
+            min-width: 150px;
+            z-index: 50;
+        }
 
-/* Dropdown menu items */
-.dropdown-menu li a {
-    display: block;
-    padding: 10px 15px;
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-}
+        /* Dropdown menu items */
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-.dropdown-menu li a:hover {
-    background: var(--color-primary);
-    color: white;
-}
+        .dropdown-menu li a:hover {
+            background: var(--color-primary);
+            color: rgb(120, 95, 160);
+        }
 
-/* SHOW dropdown on hover */
-.dropdown:hover .dropdown-menu {
-    display: block;
-    position: absolute;
-}
+        /* SHOW dropdown on hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            position: absolute;
+        }
 
 
         .logo {
@@ -219,86 +252,101 @@ nav ul li {
             border-radius: 2px;
             transition: all 0.3s ease;
         }
-        nav a, .logo {
-    color: #e5e5e5 !important;
-}
 
-nav a:hover {
-    color: #ffffff !important;
-}
+        nav a,
+        .logo {
+            color: #e5e5e5 !important;
+        }
 
-.logo {
-    text-shadow: 0 0 8px rgba(255,255,255,0.4);
-}
+        nav a:hover {
+            color: #ffffff !important;
+        }
+
+        .logo {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
 
         /* ============ BANNER SECTION ============ */
         /* ============ DIAGONAL SLIDE + FADE BANNER ============ */
-.diag-banner {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-    text-align: center;
-    color: var(--color-white);
-}
+        .diag-banner {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            text-align: center;
+            color: var(--color-white);
+        }
 
-/* All images stacked */
-.diag-banner img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    opacity: 0;
-    animation: diagFade 12s infinite;
-}
+        /* All images stacked */
+        .diag-banner img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            opacity: 0;
+            animation: diagFade 12s infinite;
+        }
 
-/* Timing each image */
-.diag-banner img:nth-child(1) { animation-delay: 0s; }
-.diag-banner img:nth-child(2) { animation-delay: 4s; }
-.diag-banner img:nth-child(3) { animation-delay: 8s; }
+        /* Timing each image */
+        .diag-banner img:nth-child(1) {
+            animation-delay: 0s;
+        }
 
-/* DIAGONAL SLIDE + FADE */
-@keyframes diagFade {
-    0% {
-        opacity: 0;
-        transform: translate(-25px, -25px) scale(1.05);
-    }
-    10%, 40% {
-        opacity: 1;
-        transform: translate(0, 0) scale(1.1);
-    }
-    50% {
-        opacity: 0;
-        transform: translate(25px, 25px) scale(1.05);
-    }
-    100% {
-        opacity: 0;
-    }
-}
+        .diag-banner img:nth-child(2) {
+            animation-delay: 4s;
+        }
 
-/* Banner content text */
-.diag-banner .banner-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    max-width: 800px;
-    width: 100%;
-}
+        .diag-banner img:nth-child(3) {
+            animation-delay: 8s;
+        }
 
-.diag-banner h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
+        /* DIAGONAL SLIDE + FADE */
+        @keyframes diagFade {
+            0% {
+                opacity: 0;
+                transform: translate(-25px, -25px) scale(1.05);
+            }
 
-.diag-banner p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    opacity: 0.95;
-}
+            10%,
+            40% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1.1);
+            }
+
+            50% {
+                opacity: 0;
+                transform: translate(25px, 25px) scale(1.05);
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Banner content text */
+        .diag-banner .banner-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .diag-banner h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .diag-banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
         .banner-btn {
             display: inline-block;
             background-color: var(--color-success);
@@ -313,6 +361,7 @@ nav a:hover {
         .banner-btn:hover {
             background-color: #059669;
         }
+
         /* ============ PRODUCTS SECTION ============ */
         .products-section {
             max-width: 1200px;
@@ -339,13 +388,13 @@ nav a:hover {
             background-color: var(--color-white);
             border-radius: 0 10px 10px 10px;
             overflow: hidden;
-            box-shadow: 0 0 15px rgba(99,102,241,0.4);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(99,102,241,0.7);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.7);
         }
 
         .product-image {
@@ -354,11 +403,13 @@ nav a:hover {
             /* background-image: url("./pics/wirelessheadphone.jpg"); */
             padding: 10px;
         }
+
         .zoom {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .product-info {
             padding: 20px;
         }
@@ -419,6 +470,7 @@ nav a:hover {
 
         /* ============ RESPONSIVE DESIGN ============ */
         @media (max-width: 768px) {
+
             /* Show hamburger menu */
             .hamburger {
                 display: flex;
@@ -427,7 +479,6 @@ nav a:hover {
             /* Hide navigation menu */
             nav {
                 display: none;
-                position: absolute;
                 top: 70px;
                 left: 0;
                 right: 0;
@@ -436,27 +487,46 @@ nav a:hover {
                 padding: 20px;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             }
+
             @media (max-width: 768px) {
-    .dropdown-menu {
-        position: static;
-        box-shadow: none;
-        background: none;
-        padding-left: 15px;
-    }
 
-    .dropdown-menu li a {
-        padding: 8px 0;
-        border-bottom: none;
-        color: var(--color-text);
-    }
+                /* Make dropdown full width inside mobile nav */
+                .dropdown-menu {
+                    display: none;
+                    background: var(--color-white);
+                    width: 100%;
+                    margin-top: 5px;
+                    padding: 0;
+                    border-radius: 5px;
+                    box-shadow: none;
+                    position: static;
+                    /* replaces unset */
+                }
 
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
-}
+                .dropdown-menu li a {
+                    padding: 10px 0;
+                    width: 100%;
+                    display: block;
+                    border-bottom: 1px solid var(--color-border);
+                    color: var(--color-text);
+                }
+
+                .dropdown-menu li a:last-child {
+                    border-bottom: none;
+                }
+
+                /* Show dropdown on HOVER for desktop,
+       but MOBILE requires tap/click → use .active class */
+                .dropdown.active .dropdown-menu {
+                    display: block;
+                }
+            }
+
+
             /* Show nav when active class is added */
             nav.active {
                 display: flex;
+                position: absolute;
             }
 
             nav ul {
@@ -541,6 +611,7 @@ nav a:hover {
         }
     </style>
 </head>
+
 <body>
     <!-- Header & Navigation -->
     <header>
@@ -549,16 +620,16 @@ nav a:hover {
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li class="dropdown">
-    <a href="#products">Products ▼</a>
+                    <li class="dropdown" onclick="this.classList.toggle('active')">
+                        <a href="#products">Products ▼</a>
 
-    <ul class="dropdown-menu">
-        <li><a href="#">Mobiles</a></li>
-        <li><a href="#">Laptops</a></li>
-        <li><a href="#">Accessories</a></li>
-        <li><a href="#">Gaming</a></li>
-    </ul>
-</li>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mobiles</a></li>
+                            <li><a href="#">Laptops</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Gaming</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -572,16 +643,16 @@ nav a:hover {
     </header>
 
     <!-- Banner Section -->
-<section class="diag-banner" id="home">
-    <img src="./pics/techie1.jpg" alt="banner image 1">
-    <img src="./pics/techie2.jpg" alt="banner image 2">
-    <img src="./pics/techie3.jpg" alt="banner image 3">
-    <div class="banner-content">
-        <h1>Welcome to TechStore</h1>
-        <p>Discover the latest technology products at unbeatable prices</p>
-        <a href="#products" class="banner-btn">Shop Now</a>
-    </div>
-</section>
+    <section class="diag-banner" id="home">
+        <img src="./pics/techie1.jpg" alt="banner image 1">
+        <img src="./pics/techie2.jpg" alt="banner image 2">
+        <img src="./pics/techie3.jpg" alt="banner image 3">
+        <div class="banner-content">
+            <h1>Welcome to TechStore</h1>
+            <p>Discover the latest technology products at unbeatable prices</p>
+            <a href="#products" class="banner-btn">Shop Now</a>
+        </div>
+    </section>
 
     <!-- Products Section -->
     <section class="products-section" id="products">
@@ -642,7 +713,7 @@ nav a:hover {
             <!-- Product 5 -->
             <div class="product-card">
                 <div class="product-image"><img src="./pics/pstand.jpg" class="zoom"></div>
-                <div class="product-info"> 
+                <div class="product-info">
                     <h3 class="product-name">Phone Stand</h3>
                     <p class="product-desc">Adjustable stand for all devices</p>
                     <div class="product-footer">
@@ -697,4 +768,5 @@ nav a:hover {
         });
     </script>
 </body>
+
 </html>
