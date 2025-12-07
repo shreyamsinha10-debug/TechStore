@@ -162,31 +162,73 @@
         }
 
         /* ============ BANNER SECTION ============ */
-        .banner {
-            background-image: url("techie2.jpg");
-            background-size: cover;
-            color: var(--color-white);
-            padding: 80px 20px;
-            text-align: center;
-        }
+        /* ============ DIAGONAL SLIDE + FADE BANNER ============ */
+.diag-banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    text-align: center;
+    color: var(--color-white);
+}
 
-        .banner-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+/* All images stacked */
+.diag-banner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    opacity: 0;
+    animation: diagFade 12s infinite;
+}
 
-        .banner h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
+/* Timing each image */
+.diag-banner img:nth-child(1) { animation-delay: 0s; }
+.diag-banner img:nth-child(2) { animation-delay: 4s; }
+.diag-banner img:nth-child(3) { animation-delay: 8s; }
 
-        .banner p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
+/* DIAGONAL SLIDE + FADE */
+@keyframes diagFade {
+    0% {
+        opacity: 0;
+        transform: translate(-25px, -25px) scale(1.05);
+    }
+    10%, 40% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.1);
+    }
+    50% {
+        opacity: 0;
+        transform: translate(25px, 25px) scale(1.05);
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
+/* Banner content text */
+.diag-banner .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    max-width: 800px;
+    width: 100%;
+}
+
+.diag-banner h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.diag-banner p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
         .banner-btn {
             display: inline-block;
             background-color: var(--color-success);
@@ -201,7 +243,6 @@
         .banner-btn:hover {
             background-color: #059669;
         }
-
         /* ============ PRODUCTS SECTION ============ */
         .products-section {
             max-width: 1200px;
@@ -224,22 +265,23 @@
         }
 
         .product-card {
+            background: #1e293b;
             background-color: var(--color-white);
-            border-radius: 8px;
+            border-radius: 0 10px 10px 10px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(99,102,241,0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 30px rgba(99,102,241,0.7);
         }
 
         .product-image {
             width: 100%;
             height: 200px;
-            /* background-image: url("wirelessheadphone.jpg"); */
+            /* background-image: url("./pics/wirelessheadphone.jpg"); */
             padding: 10px;
         }
         .zoom {
@@ -434,13 +476,16 @@
     </header>
 
     <!-- Banner Section -->
-    <section class="banner" id="home">
-        <div class="banner-content">
-            <h1>Welcome to TechStore</h1>
-            <p>Discover the latest technology products at unbeatable prices</p>
-            <a href="#products" class="banner-btn">Shop Now</a>
-        </div>
-    </section>
+<section class="diag-banner" id="home">
+    <img src="./pics/techie1.jpg" alt="banner image 1">
+    <img src="./pics/techie2.jpg" alt="banner image 2">
+    <img src="./pics/techie3.jpg" alt="banner image 3">
+    <div class="banner-content">
+        <h1>Welcome to TechStore</h1>
+        <p>Discover the latest technology products at unbeatable prices</p>
+        <a href="#products" class="banner-btn">Shop Now</a>
+    </div>
+</section>
 
     <!-- Products Section -->
     <section class="products-section" id="products">
@@ -448,78 +493,78 @@
         <div class="products-grid">
             <!-- Product 1 -->
             <div class="product-card">
-                <div class="product-image"><img src="wirelessheadphone.jpg" class="zoom"> </div>
+                <div class="product-image"><img src="./pics/wirelessheadphone.jpg" class="zoom"> </div>
                 <div class="product-info">
                     <h3 class="product-name">Wireless Headphones</h3>
                     <p class="product-desc">Premium sound quality with active noise cancellation</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 999</span>
-                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
 
             <!-- Product 2 -->
             <div class="product-card">
-                <div class="product-image"><img src="smartwatch.jpg" class="zoom"></div>
+                <div class="product-image"><img src="./pics/smartwatch.jpg" class="zoom"></div>
                 <div class="product-info">
                     <h3 class="product-name">Smartwatch Pro</h3>
                     <p class="product-desc">Track your fitness with advanced health monitoring</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 2499</span>
-                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
 
             <!-- Product 3 -->
             <div class="product-card">
-                <div class="product-image"><img src="usbc.jpg" class="zoom"></div>
+                <div class="product-image"><img src="./pics/usbc.jpg" class="zoom"></div>
                 <div class="product-info">
                     <h3 class="product-name">USB-C Cable</h3>
                     <p class="product-desc">Fast charging and data transfer cable</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 299</span>
-                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
 
             <!-- Product 4 -->
             <div class="product-card">
-                <div class="product-image"><img src="portablespeaker.jpg" class="zoom"></div>
+                <div class="product-image"><img src="./pics/portablespeaker.jpg" class="zoom"></div>
                 <div class="product-info">
                     <h3 class="product-name">Portable Speaker</h3>
                     <p class="product-desc">Waterproof speaker with 12-hour battery life</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 1999</span>
-                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
 
             <!-- Product 5 -->
             <div class="product-card">
-                <div class="product-image"><img src="pstand.jpg" class="zoom"></div>
-                <div class="product-info">
+                <div class="product-image"><img src="./pics/pstand.jpg" class="zoom"></div>
+                <div class="product-info"> 
                     <h3 class="product-name">Phone Stand</h3>
                     <p class="product-desc">Adjustable stand for all devices</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 649</span>
-                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
 
             <!-- Product 6 -->
             <div class="product-card">
-                <div class="product-image"><img src="screenp.jpg" class="zoom"></div>
+                <div class="product-image"><img src="./pics/screenp.jpg" class="zoom"></div>
                 <div class="product-info">
                     <h3 class="product-name">Screen Protector</h3>
                     <p class="product-desc">Tempered glass for ultimate protection</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 149</span>
-                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
