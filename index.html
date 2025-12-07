@@ -1,627 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechStore - Responsive E-Commerce</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-        :root {
-            --color-primary: #6366f1;
-            --color-primary-dark: #4f46e5;
-            --color-text: #0f172a;
-            --color-text-light: #64748b;
-            --color-bg: #0f172a;
-            --color-white: #dbbdbd;
-            --color-border: #e2e8f0;
-            --color-success: #10b981;
-            --color-accent: #ec4899;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes parallaxWiggle {
-            0% {
-                background-position: 0 0;
-            }
-
-            50% {
-                background-position: -200px -50px;
-            }
-
-            100% {
-                background-position: 0 0;
-            }
-        }
-
-        .banner {
-            background-image: url("pattern.png");
-            animation: parallaxWiggle 6s ease-in-out infinite;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0px);
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                box-shadow: 0 0 20px rgba(103, 105, 218, 0.3);
-            }
-
-            50% {
-                box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--color-text);
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ============ HEADER & NAVIGATION ============ */
-        header {
-            background-color: var(--color-white);
-            background: linear-gradient(135deg, #1a1a1a, #2b2b2b, #1a1a1a);
-            background-size: 300% 300%;
-            animation: metalMove 6s ease infinite;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        /* Metallic shine animation */
-        @keyframes metalMove {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        header::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #aaa, #fff, #aaa);
-            opacity: 0.4;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-        }
-
-        /* ============ DROPDOWN MENU ============ */
-
-        nav ul li {
-            position: relative;
-        }
-
-        /* Hidden dropdown by default */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 22px;
-            left: 0;
-            background: var(--color-white);
-            padding: 10px 0;
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            list-style: none;
-            min-width: 150px;
-            z-index: 50;
-        }
-
-        /* Dropdown menu items */
-        .dropdown-menu li a {
-            display: block;
-            padding: 10px 15px;
-            color: var(--color-text);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .dropdown-menu li a:hover {
-            background: var(--color-primary);
-            color: rgb(120, 95, 160);
-        }
-
-        /* SHOW dropdown on hover */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            position: absolute;
-        }
-
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--color-primary);
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--color-text);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--color-primary);
-        }
-
-        /* Hamburger Menu - Hidden by default */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 6px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: #e5e5e5;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        nav a,
-        .logo {
-            color: #e5e5e5 !important;
-        }
-
-        nav a:hover {
-            color: #ffffff !important;
-        }
-
-        .logo {
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
-
-        /* ============ BANNER SECTION ============ */
-        /* ============ DIAGONAL SLIDE + FADE BANNER ============ */
-        .diag-banner {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            text-align: center;
-            color: var(--color-white);
-        }
-
-        /* All images stacked */
-        .diag-banner img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            opacity: 0;
-            animation: diagFade 12s infinite;
-        }
-
-        /* Timing each image */
-        .diag-banner img:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .diag-banner img:nth-child(2) {
-            animation-delay: 4s;
-        }
-
-        .diag-banner img:nth-child(3) {
-            animation-delay: 8s;
-        }
-
-        /* DIAGONAL SLIDE + FADE */
-        @keyframes diagFade {
-            0% {
-                opacity: 0;
-                transform: translate(-25px, -25px) scale(1.05);
-            }
-
-            10%,
-            40% {
-                opacity: 1;
-                transform: translate(0, 0) scale(1.1);
-            }
-
-            50% {
-                opacity: 0;
-                transform: translate(25px, 25px) scale(1.05);
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
-
-        /* Banner content text */
-        .diag-banner .banner-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            max-width: 800px;
-            width: 100%;
-        }
-
-        .diag-banner h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .diag-banner p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        .banner-btn {
-            display: inline-block;
-            background-color: var(--color-success);
-            color: var(--color-white);
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .banner-btn:hover {
-            background-color: #059669;
-        }
-
-        /* ============ PRODUCTS SECTION ============ */
-        .products-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 32px;
-            margin-bottom: 40px;
-            color: #afb8cb;
-            text-align: center;
-        }
-
-        /* Products Grid - Responsive */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #1e293b;
-            background-color: var(--color-white);
-            border-radius: 0 10px 10px 10px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.7);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 200px;
-            /* background-image: url("./pics/wirelessheadphone.jpg"); */
-            padding: 10px;
-        }
-
-        .zoom {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-name {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--color-text);
-        }
-
-        .product-desc {
-            font-size: 14px;
-            color: var(--color-text-light);
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--color-primary);
-        }
-
-        .add-to-cart-btn {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .add-to-cart-btn:hover {
-            background-color: var(--color-primary-dark);
-        }
-
-        /* ============ FOOTER ============ */
-        footer {
-            background-color: var(--color-text);
-            color: var(--color-white);
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        /* ============ RESPONSIVE DESIGN ============ */
-        @media (max-width: 768px) {
-
-            /* Show hamburger menu */
-            .hamburger {
-                display: flex;
-            }
-
-            /* Hide navigation menu */
-            nav {
-                display: none;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background-color: var(--color-white);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            }
-
-            @media (max-width: 768px) {
-
-                /* Make dropdown full width inside mobile nav */
-                .dropdown-menu {
-                    display: none;
-                    background: var(--color-white);
-                    width: 100%;
-                    margin-top: 5px;
-                    padding: 0;
-                    border-radius: 5px;
-                    box-shadow: none;
-                    position: static;
-                    /* replaces unset */
-                }
-
-                .dropdown-menu li a {
-                    padding: 10px 0;
-                    width: 100%;
-                    display: block;
-                    border-bottom: 1px solid var(--color-border);
-                    color: var(--color-text);
-                }
-
-                .dropdown-menu li a:last-child {
-                    border-bottom: none;
-                }
-
-                /* Show dropdown on HOVER for desktop,
-       but MOBILE requires tap/click → use .active class */
-                .dropdown.active .dropdown-menu {
-                    display: block;
-                }
-            }
-
-
-            /* Show nav when active class is added */
-            nav.active {
-                display: flex;
-                position: absolute;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            nav a {
-                display: block;
-                padding: 10px 0;
-                border-bottom: 1px solid var(--color-border);
-            }
-
-            nav a:last-child {
-                border-bottom: none;
-            }
-
-            /* Banner adjustments */
-            .banner h1 {
-                font-size: 32px;
-            }
-
-            .banner p {
-                font-size: 16px;
-            }
-
-            /* Section title */
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 30px;
-            }
-
-            /* Products grid - 2 columns */
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                height: 60px;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            /* Banner adjustments */
-            .banner {
-                padding: 50px 20px;
-            }
-
-            .banner h1 {
-                font-size: 24px;
-            }
-
-            .banner p {
-                font-size: 14px;
-            }
-
-            /* Section title */
-            .section-title {
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
-
-            /* Products grid - 1 column */
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .product-image {
-                height: 150px;
-            }
-
-            /* Navigation menu on mobile */
-            nav {
-                top: 60px;
-            }
-        }
-    </style>
+    <!-- Link External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Header & Navigation -->
+
+    <!-- ========================= HEADER & NAVIGATION BAR ========================= -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">🛍️ TechStore</a>
+
+            <!-- Logo -->
+            <a href="#home" class="logo">🛍️ TechStore</a>
+
+            <!-- Main Navigation -->
             <nav>
                 <ul>
+
+                    <!-- Normal Link -->
                     <li><a href="#home">Home</a></li>
-                    <li class="dropdown" onclick="this.classList.toggle('active')">
-                        <a href="#products">Products ▼</a>
+
+                    <!-- Dropdown Menu -->
+                    <li class="dropdown">
+                        <a href="#products" class="has-submenu">Products ▼</a>
 
                         <ul class="dropdown-menu">
                             <li><a href="#">Mobiles</a></li>
@@ -630,56 +36,73 @@
                             <li><a href="#">Gaming</a></li>
                         </ul>
                     </li>
+
+                    <!-- Normal Links -->
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
+
                 </ul>
             </nav>
+
+            <!-- Hamburger Button -->
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+
         </div>
     </header>
 
-    <!-- Banner Section -->
+
+
+    <!-- ========================= BANNER SECTION ========================= -->
     <section class="diag-banner" id="home">
-        <img src="./pics/techie1.jpg" alt="banner image 1">
-        <img src="./pics/techie2.jpg" alt="banner image 2">
-        <img src="./pics/techie3.jpg" alt="banner image 3">
+
+        <!-- Rotating images -->
+        <img src="./pics/techie1.jpg">
+        <img src="./pics/techie2.jpg">
+        <img src="./pics/techie3.jpg">
+
         <div class="banner-content">
             <h1>Welcome to TechStore</h1>
             <p>Discover the latest technology products at unbeatable prices</p>
             <a href="#products" class="banner-btn">Shop Now</a>
         </div>
+
     </section>
 
-    <!-- Products Section -->
+
+
+    <!-- ========================= PRODUCTS SECTION ========================= -->
     <section class="products-section" id="products">
+
         <h2 class="section-title">Featured Products</h2>
+
         <div class="products-grid">
-            <!-- Product 1 -->
+
+             <!-- Product 1 -->
             <div class="product-card">
-                <div class="product-image"><img src="./pics/wirelessheadphone.jpg" class="zoom"> </div>
+                <div class="product-image"><img src="./pics/wirelessheadphone.jpg"></div>
                 <div class="product-info">
                     <h3 class="product-name">Wireless Headphones</h3>
                     <p class="product-desc">Premium sound quality with active noise cancellation</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 999</span>
-                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
+                        <a href="#" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
 
             <!-- Product 2 -->
             <div class="product-card">
-                <div class="product-image"><img src="./pics/smartwatch.jpg" class="zoom"></div>
+                <div class="product-image"><img src="./pics/smartwatch.jpg"></div>
                 <div class="product-info">
                     <h3 class="product-name">Smartwatch Pro</h3>
                     <p class="product-desc">Track your fitness with advanced health monitoring</p>
                     <div class="product-footer">
                         <span class="product-price">Rs. 2499</span>
-                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
+                        <a href="#" class="add-to-cart-btn">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -735,38 +158,21 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Footer -->
+
+
+    <!-- ========================= FOOTER ========================= -->
     <footer>
-        <p>&copy; 2024 TechStore. All rights reserved.</p>
-        <p>Responsive Design | Mobile Friendly | E-Commerce</p>
+        <p>© 2025 TechStore. All rights reserved.</p>
     </footer>
 
-    <script>
-        function toggleMenu() {
-            const nav = document.querySelector('nav');
-            nav.classList.toggle('active');
-        }
 
-        // Close menu when a link is clicked
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('nav').classList.remove('active');
-            });
-        });
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const nav = document.querySelector('nav');
-            const hamburger = document.querySelector('.hamburger');
-            if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
-                nav.classList.remove('active');
-            }
-        });
-    </script>
+    <!-- Link External JS -->
+    <script src="script.js"></script>
+
 </body>
-
 </html>
