@@ -33,3 +33,22 @@ document.addEventListener("click", function(e){
         dropdown.classList.remove("active");
     }
 });
+
+// Start cart count at 0
+let cartCount = 0;
+
+// Function to update cart display
+function updateCart() {
+    cartCount++; // increase by 1
+    document.getElementById("cart-count").textContent = cartCount;
+}
+
+// Attach click event to all "Add to Cart" buttons
+const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+
+addToCartButtons.forEach(button => {
+    button.addEventListener("click", function (event) {
+        event.preventDefault(); // stop link from opening a new page
+        updateCart();           // increase cart count
+    });
+});
