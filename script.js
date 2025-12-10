@@ -1,8 +1,8 @@
 /* ================= CLEANED JAVASCRIPT ================= */
 
 /* Toggle Mobile Menu */
-function toggleMenu(){
-    document.querySelector("nav").classList.toggle("active");
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("active");
 }
 
 /* Dropdown logic */
@@ -52,3 +52,58 @@ addToCartButtons.forEach(button => {
         updateCart();           // increase cart count
     });
 });
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("active");
+}
+
+// ===================== SMOOTH SCROLL TO CONTACT =====================
+document.querySelectorAll('a[href="#contact"]').forEach(link => {
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    });
+});
+
+// ===================== CONTACT FORM VALIDATION =====================
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let salutation = document.getElementById("salutation").value;
+    let firstName = document.getElementById("firstName").value.trim();
+    let lastName = document.getElementById("lastName").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let countryCode = document.getElementById("countryCode").value;
+    let email = document.getElementById("email").value.trim();
+    let address = document.getElementById("address").value.trim();
+
+    const nameRegex = /^[A-Za-z]+$/;
+    if (!firstName || !nameRegex.test(firstName)) {
+        alert("First name must contain only alphabets.");
+        return;
+    }
+
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(phone)) {
+        alert("Phone number must be exactly 10 digits.");
+        return;
+    }
+
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    if (address.length > 500) {
+        alert("Address must be under 500 characters.");
+        return;
+    }
+
+    alert(
+        "Form submitted successfully!\n\n" +
+        `Name: ${salutation} ${firstName} ${lastName}\n` +
+        `Phone: ${countryCode} ${phone}\n` +
+        `Email: ${email}`
+    );
+});
+

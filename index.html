@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore - Responsive E-Commerce</title>
+    <title>TechStore</title>
 
     <!-- Link External CSS -->
     <link rel="stylesheet" href="style.css">
@@ -19,44 +19,10 @@
             <!-- Logo -->
             <a href="#home" class="logo">🛍️ TechStore</a>
 
-            <!-- Main Navigation -->
-            <nav>
-                <ul>
-
-                    <!-- Normal Link -->
-                    <li><a href="#home">Home</a></li>
-
-                    <!-- Dropdown Menu -->
-                    <li class="dropdown">
-                        <a href="#products" class="has-submenu">Products ▼</a>
-
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Mobiles</a></li>
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Gaming</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Normal Links -->
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-
-                    <nav>
-
-                        <!-- Cart Icon -->
-                        <li class="cart-icon">
-                            <a href="#">
-                                🛒 Cart <span id="cart-count">0</span>
-                            </a>
-                        </li>
-
-                </ul>
-            </nav>
-
-
-            </ul>
-            </nav>
+            <!-- Cart Icon (same for desktop + mobile) -->
+            <div class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
 
             <!-- Hamburger Button -->
             <div class="hamburger" onclick="toggleMenu()">
@@ -65,10 +31,31 @@
                 <span></span>
             </div>
 
+            <!-- Navigation -->
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+
+                    <li class="dropdown">
+                        <a class="has-submenu">Products ▼</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Mobiles</a></li>
+                            <li><a href="#">Laptops</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Gaming</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+
+                    <!-- Desktop placeholder for the cart icon -->
+                    <li class="cart-desktop-placeholder"></li>
+                </ul>
+            </nav>
+
         </div>
     </header>
-
-
 
     <!-- ========================= BANNER SECTION ========================= -->
     <section class="diag-banner" id="home">
@@ -176,7 +163,66 @@
         </div>
     </section>
 
+    <!-- ========================= CONTACT SECTION ========================= -->
+<section id="contact" class="contact-section">
+    <h2>Contact Us</h2>
 
+    <form id="contactForm" class="contact-form">
+
+        <!-- Salutation + First + Last -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Salutation</label>
+                <select id="salutation">
+                    <option value="Mr">Mr</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Mrs">Mrs</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>First Name*</label>
+                <input type="text" id="firstName" maxlength="50" placeholder="Enter first name">
+            </div>
+
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" id="lastName" placeholder="Enter last name">
+            </div>
+        </div>
+
+        <!-- Phone + Email -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Phone Number*</label>
+                <div class="phone-wrapper">
+                    <select id="countryCode">
+                        <option value="+91">+91 (India)</option>
+                        <option value="+1">+1 (USA)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+61">+61 (Australia)</option>
+                        <option value="+81">+81 (Japan)</option>
+                    </select>
+
+                    <input type="text" id="phone" maxlength="10" placeholder="10-digit number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email*</label>
+                <input type="email" id="email" placeholder="Enter email">
+            </div>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group full-width">
+            <label>Address (max 500 chars)</label>
+            <textarea id="address" maxlength="500" rows="4" placeholder="Enter address"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</section>
 
     <!-- ========================= FOOTER ========================= -->
     <footer>
