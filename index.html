@@ -163,66 +163,93 @@
         </div>
     </section>
 
-    <!-- ========================= CONTACT SECTION ========================= -->
-<section id="contact" class="contact-section">
-    <h2>Contact Us</h2>
+    <!-- ========================= CONTACT SECTION (UPDATED) ========================= -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Us</h2>
 
-    <form id="contactForm" class="contact-form">
+        <form id="contactForm" class="contact-form" novalidate>
 
-        <!-- Salutation + First + Last -->
-        <div class="form-row">
-            <div class="form-group">
-                <label>Salutation</label>
-                <select id="salutation">
-                    <option value="Mr">Mr</option>
-                    <option value="Ms">Ms</option>
-                    <option value="Mrs">Mrs</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>First Name*</label>
-                <input type="text" id="firstName" maxlength="50" placeholder="Enter first name">
-            </div>
-
-            <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" id="lastName" placeholder="Enter last name">
-            </div>
-        </div>
-
-        <!-- Phone + Email -->
-        <div class="form-row">
-            <div class="form-group">
-                <label>Phone Number*</label>
-                <div class="phone-wrapper">
-                    <select id="countryCode">
-                        <option value="+91">+91 (India)</option>
-                        <option value="+1">+1 (USA)</option>
-                        <option value="+44">+44 (UK)</option>
-                        <option value="+61">+61 (Australia)</option>
-                        <option value="+81">+81 (Japan)</option>
+            <!-- Salutation + First + Last -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="salutation">Salutation<span class="req">*</span></label>
+                    <select id="salutation" required>
+                        <option value="">Select</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Prof">Prof</option>
+                        <option value="Other">Other</option>
                     </select>
+                    <div class="error" id="salutationError" aria-live="polite"></div>
+                </div>
 
-                    <input type="text" id="phone" maxlength="10" placeholder="10-digit number">
+                <div class="form-group">
+                    <label for="firstName">First Name<span class="req">*</span></label>
+                    <input type="text" id="firstName" maxlength="50" placeholder="Enter first name" required>
+                    <div class="error" id="firstNameError" aria-live="polite"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" maxlength="50" placeholder="Enter last name (optional)">
+                    <div class="error" id="lastNameError" aria-live="polite"></div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Email*</label>
-                <input type="email" id="email" placeholder="Enter email">
+            <!-- PHONE + EMAIL ROW -->
+            <div class="form-row">
+                <div class="form-group phone-group">
+                    <label for="countryCode">Phone Number<span class="req">*</span></label>
+                    <div class="phone-wrapper">
+                        <select id="countryCode" aria-label="Country code">
+                            <option value="+91">+91</option>
+                            <option value="+1">+1</option>
+                            <option value="+44">+44</option>
+                            <option value="+61">+61</option>
+                        </select>
+                        <input type="tel" id="phone" inputmode="numeric" maxlength="10" placeholder="10-digit number"
+                            required>
+                    </div>
+                    <div class="error" id="phoneError" aria-live="polite"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email<span class="req">*</span></label>
+                    <input type="email" id="email" maxlength="50" placeholder="Enter email" required>
+                    <div class="error" id="emailError" aria-live="polite"></div>
+                </div>
             </div>
-        </div>
 
-        <!-- Address -->
-        <div class="form-group full-width">
-            <label>Address (max 500 chars)</label>
-            <textarea id="address" maxlength="500" rows="4" placeholder="Enter address"></textarea>
-        </div>
+            <!-- ADDRESS  -->
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="address">Address</label>
+                    <textarea id="address" maxlength="250" rows="3"
+                        placeholder="Street, City, State, PIN (optional)"></textarea>
+                    <div class="error" id="addressError" aria-live="polite"></div>
+                </div>
+            </div>
 
-        <button type="submit" class="submit-btn">Submit</button>
-    </form>
-</section>
+            <!-- MESSAGE -->
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="message">Message</label>
+                    <textarea id="message" maxlength="500" rows="4" placeholder="Your message (optional)"></textarea>
+                    <div class="error" id="messageError" aria-live="polite"></div>
+                </div>
+            </div>
+
+            <!-- SUBMIT -->
+            <div class="form-row">
+                <div class="form-group full-width submit-row">
+                    <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </section>
 
     <!-- ========================= FOOTER ========================= -->
     <footer>
