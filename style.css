@@ -23,6 +23,13 @@ header {
     animation: metalMove 6s ease infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+#products {
+  scroll-margin-top: 80px; /* adjust based on navbar height */
+}
+
 @keyframes metalMove {
     0% {
         background-position: 0% 50%;
@@ -424,7 +431,7 @@ footer {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 5px;
 }
 
 .form-row {
@@ -433,9 +440,8 @@ footer {
 }
 
 .form-group {
-    flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 }
 
 .form-group.full-width {
@@ -469,7 +475,7 @@ footer {
 }
 
 .phone-wrapper select {
-    width: 130px;
+    width: 80px;
 }
 
 /* Submit Button */

@@ -81,7 +81,7 @@
         <h2 class="section-title">Featured Products</h2>
 
         <div class="products-grid">
-
+        
             <!-- Product 1 -->
             <div class="product-card">
                 <div class="product-image"><img src="./pics/wirelessheadphone.jpg"></div>
@@ -169,9 +169,9 @@
 
         <form id="contactForm" class="contact-form" novalidate>
 
-            <!-- Salutation + First + Last -->
-            <div class="form-row">
-                <div class="form-group">
+            <!-- Salutation + First + Last (fixed markup) -->
+            <div class="form-row contact-top-row">
+                <div class="form-group salutation-group">
                     <label for="salutation">Salutation<span class="req">*</span></label>
                     <select id="salutation" required>
                         <option value="">Select</option>
@@ -185,18 +185,19 @@
                     <div class="error" id="salutationError" aria-live="polite"></div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group first-name-group">
                     <label for="firstName">First Name<span class="req">*</span></label>
                     <input type="text" id="firstName" maxlength="50" placeholder="Enter first name" required>
                     <div class="error" id="firstNameError" aria-live="polite"></div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group last-name-group">
                     <label for="lastName">Last Name</label>
                     <input type="text" id="lastName" maxlength="50" placeholder="Enter last name (optional)">
                     <div class="error" id="lastNameError" aria-live="polite"></div>
                 </div>
             </div>
+
 
             <!-- PHONE + EMAIL ROW -->
             <div class="form-row">
