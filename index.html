@@ -19,11 +19,6 @@
             <!-- Logo -->
             <a href="#home" class="logo">🛍️ TechStore</a>
 
-            <!-- Cart Icon (same for desktop + mobile) -->
-            <div class="cart-icon">
-                🛒 <span id="cart-count">0</span>
-            </div>
-
             <!-- Hamburger Button -->
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
@@ -31,29 +26,29 @@
                 <span></span>
             </div>
 
+            <!-- Cart Icon (OUTSIDE NAV) -->
+            <div class="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
+
             <!-- Navigation -->
             <nav class="nav-menu" id="nav-menu">
                 <ul>
                     <li><a href="#home">Home</a></li>
-
-                    <li class="dropdown">
-                        <a class="has-submenu">Products ▼</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Mobiles</a></li>
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Gaming</a></li>
-                        </ul>
-                    </li>
-
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact Us</a></li>
 
-                    <!-- Desktop placeholder for the cart icon -->
-                    <li class="cart-desktop-placeholder"></li>
+                    <li class="nav-categories">
+                        <a class="category-title">Categories ▼</a>
+                        <ul class="category-menu">
+                            <li data-filter="all" class="active">All</li>
+                            <li data-filter="mobile">Mobiles</li>
+                            <li data-filter="audio">Audio</li>
+                            <li data-filter="accessories">Accessories</li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
-
         </div>
     </header>
 
@@ -80,87 +75,108 @@
 
         <h2 class="section-title">Featured Products</h2>
 
-        <div class="products-grid">
-        
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-image"><img src="./pics/wirelessheadphone.jpg"></div>
-                <div class="product-info">
-                    <h3 class="product-name">Wireless Headphones</h3>
-                    <p class="product-desc">Premium sound quality with active noise cancellation</p>
-                    <div class="product-footer">
-                        <span class="product-price">Rs. 999</span>
-                        <a href="#" class="add-to-cart-btn">Add to Cart</a>
+        <div class="products-layout">
+
+            <!-- PRODUCTS GRID -->
+            <div class="products-grid">
+
+                <!-- Product 1 -->
+                <div class="product-card" data-category="audio">
+                    <div class="product-image"><img src="./pics/wirelessheadphone.jpg"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">Wireless Headphones</h3>
+                        <p class="product-desc">Premium sound quality with active noise cancellation</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rs. 999</span>
+                            <div class="cart-actions">
+                                <button class="cart-btn minus-btn" disabled>−</button>
+                                <button class="cart-btn plus-btn">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-image"><img src="./pics/smartwatch.jpg"></div>
-                <div class="product-info">
-                    <h3 class="product-name">Smartwatch Pro</h3>
-                    <p class="product-desc">Track your fitness with advanced health monitoring</p>
-                    <div class="product-footer">
-                        <span class="product-price">Rs. 2499</span>
-                        <a href="#" class="add-to-cart-btn">Add to Cart</a>
+                <!-- Product 2 -->
+                <div class="product-card" data-category="mobile">
+                    <div class="product-image"><img src="./pics/smartwatch.jpg"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">Smartwatch Pro</h3>
+                        <p class="product-desc">Track your fitness with advanced health monitoring</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rs. 2499</span>
+                            <div class="cart-actions">
+                                <button class="cart-btn minus-btn" disabled>−</button>
+                                <button class="cart-btn plus-btn">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-image"><img src="./pics/usbc.jpg" class="zoom"></div>
-                <div class="product-info">
-                    <h3 class="product-name">USB-C Cable</h3>
-                    <p class="product-desc">Fast charging and data transfer cable</p>
-                    <div class="product-footer">
-                        <span class="product-price">Rs. 299</span>
-                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
+                <!-- Product 3 -->
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image"><img src="./pics/usbc.jpg" class="zoom"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">USB-C Cable</h3>
+                        <p class="product-desc">Fast charging and data transfer cable</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rs. 299</span>
+                            <div class="cart-actions">
+                                <button class="cart-btn minus-btn" disabled>−</button>
+                                <button class="cart-btn plus-btn">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-image"><img src="./pics/portablespeaker.jpg" class="zoom"></div>
-                <div class="product-info">
-                    <h3 class="product-name">Portable Speaker</h3>
-                    <p class="product-desc">Waterproof speaker with 12-hour battery life</p>
-                    <div class="product-footer">
-                        <span class="product-price">Rs. 1999</span>
-                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
+                <!-- Product 4 -->
+                <div class="product-card" data-category="audio">
+                    <div class="product-image"><img src="./pics/portablespeaker.jpg" class="zoom"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">Portable Speaker</h3>
+                        <p class="product-desc">Waterproof speaker with 12-hour battery life</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rs. 1999</span>
+                            <div class="cart-actions">
+                                <button class="cart-btn minus-btn" disabled>−</button>
+                                <button class="cart-btn plus-btn">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product 5 -->
-            <div class="product-card">
-                <div class="product-image"><img src="./pics/pstand.jpg" class="zoom"></div>
-                <div class="product-info">
-                    <h3 class="product-name">Phone Stand</h3>
-                    <p class="product-desc">Adjustable stand for all devices</p>
-                    <div class="product-footer">
-                        <span class="product-price">Rs. 649</span>
-                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
+                <!-- Product 5 -->
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image"><img src="./pics/pstand.jpg" class="zoom"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">Phone Stand</h3>
+                        <p class="product-desc">Adjustable stand for all devices</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rs. 649</span>
+                            <div class="cart-actions">
+                                <button class="cart-btn minus-btn" disabled>−</button>
+                                <button class="cart-btn plus-btn">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Product 6 -->
-            <div class="product-card">
-                <div class="product-image"><img src="./pics/screenp.jpg" class="zoom"></div>
-                <div class="product-info">
-                    <h3 class="product-name">Screen Protector</h3>
-                    <p class="product-desc">Tempered glass for ultimate protection</p>
-                    <div class="product-footer">
-                        <span class="product-price">Rs. 149</span>
-                        <a href="http://www.google.com" class="add-to-cart-btn">Add to Cart</a>
+                <!-- Product 6 -->
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image"><img src="./pics/screenp.jpg" class="zoom"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">Screen Protector</h3>
+                        <p class="product-desc">Tempered glass for ultimate protection</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rs. 149</span>
+                            <div class="cart-actions">
+                                <button class="cart-btn minus-btn" disabled>−</button>
+                                <button class="cart-btn plus-btn">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
     </section>
 
     <!-- ========================= CONTACT SECTION (UPDATED) ========================= -->
@@ -213,6 +229,7 @@
                         <input type="tel" id="phone" inputmode="numeric" maxlength="10" placeholder="10-digit number"
                             required>
                     </div>
+
                     <div class="error" id="phoneError" aria-live="polite"></div>
                 </div>
 
@@ -223,30 +240,43 @@
                 </div>
             </div>
 
-            <!-- ADDRESS  -->
+            <!-- MOBILE + ADDRESS + MESSAGE ROW -->
             <div class="form-row">
+
+                <!-- Mobile Number -->
+                <div class="form-group mobile-group">
+                    <label for="mobile">Mobile Number<span class="req">*</span></label>
+                    <div class="phone-wrapper">
+                        <select id="countryCode">
+                            <option value="+91">+91</option>
+                            <option value="+1">+1</option>
+                            <option value="+44">+44</option>
+                            <option value="+61">+61</option>
+                        </select>
+                        <input type="tel" id="mobile" maxlength="10" placeholder="10-digit number" required>
+                    </div>
+                    <div class="error" id="mobileError"></div>
+                </div>
+
+                <!-- Address -->
                 <div class="form-group full-width">
                     <label for="address">Address</label>
-                    <textarea id="address" maxlength="250" rows="3"
-                        placeholder="Street, City, State, PIN (optional)"></textarea>
-                    <div class="error" id="addressError" aria-live="polite"></div>
+                    <textarea id="address" rows="3" placeholder="Street, City, State, PIN (optional)"></textarea>
+                    <div class="error" id="addressError"></div>
                 </div>
-            </div>
 
-            <!-- MESSAGE -->
-            <div class="form-row">
+                <!-- Message -->
                 <div class="form-group full-width">
                     <label for="message">Message</label>
-                    <textarea id="message" maxlength="500" rows="4" placeholder="Your message (optional)"></textarea>
-                    <div class="error" id="messageError" aria-live="polite"></div>
+                    <textarea id="message" rows="3" placeholder="Your message (optional)"></textarea>
+                    <div class="error" id="messageError"></div>
                 </div>
+
             </div>
 
-            <!-- SUBMIT -->
-            <div class="form-row">
-                <div class="form-group full-width submit-row">
-                    <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
-                </div>
+            <!-- SUBMIT BUTTON (OWN ROW) -->
+            <div class="form-row submit-row">
+                <button type="submit" id="submitBtn" class="submit-btn">Submit</button>
             </div>
 
         </form>
@@ -257,7 +287,11 @@
         <p>© 2025 TechStore. All rights reserved.</p>
     </footer>
 
-
+    <!-- CART DETAILS POPUP -->
+    <div class="cart-popup" id="cartPopup">
+        <h3>🛒 Cart Items</h3>
+        <ul id="cartItems"></ul>
+    </div>
 
     <!-- Link External JS -->
     <script src="script.js"></script>
